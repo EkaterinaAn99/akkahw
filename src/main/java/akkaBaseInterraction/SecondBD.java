@@ -9,8 +9,6 @@ import akka.actor.typed.javadsl.Receive;
 
 public class SecondBD extends AbstractBehavior<String> {
 
-    //private int counter = 0;
-    //private int checkerForFunction = 0;
     private String messageFirstBD = "BD2toBD1";
     private String messageToMain = "stop";
     ActorRef refFirstBD = getContext().spawn(FirstBD.create(), "FirstBD");
@@ -19,8 +17,6 @@ public class SecondBD extends AbstractBehavior<String> {
     public static Behavior<String> create() {
         return Behaviors.setup(context -> new SecondBD(context));
     }
-
-    private int greetingCounter;
 
     private SecondBD(ActorContext<String> context) {
         super(context);

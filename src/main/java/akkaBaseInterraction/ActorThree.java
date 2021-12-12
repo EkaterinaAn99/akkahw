@@ -9,16 +9,12 @@ import akka.actor.typed.javadsl.Receive;
 
 public class ActorThree extends AbstractBehavior<String> {
 
-    private int counter = 0;
-    //private int checkerForFunction = 0;
     private String messageActorFour = "ActorFour";
     private String messageTheEnd = "TheEnd";
     ActorRef refActorFour = getContext().spawn(ActorFour.create(), "ActorFour");
     public static Behavior<String> create() {
         return Behaviors.setup(context -> new ActorThree(context));
     }
-
-    private int greetingCounter;
 
     private ActorThree(ActorContext<String> context) {
         super(context);

@@ -17,8 +17,6 @@ public class ActorTwo extends AbstractBehavior<String> {
 		return Behaviors.setup(context -> new ActorTwo(context));
 	}
 
-	private int greetingCounter;
-
 	private ActorTwo(ActorContext<String> context) {
 		super(context);
 	}

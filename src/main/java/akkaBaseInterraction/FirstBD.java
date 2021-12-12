@@ -16,9 +16,6 @@ public class FirstBD extends AbstractBehavior<String> {
         return Behaviors.setup(context -> new FirstBD(context));
     }
 
-
-    private int greetingCounter;
-
     private FirstBD(ActorContext<String> context) {
         super(context);
     }

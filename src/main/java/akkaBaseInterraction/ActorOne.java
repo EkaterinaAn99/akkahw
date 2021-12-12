@@ -9,7 +9,6 @@ import akka.actor.typed.javadsl.Receive;
 
 public class ActorOne extends AbstractBehavior<String> {
 
-	private int counter = 0;
 	private String messageBD = "FirstBDProof";
 	private String messageActorTwo = "ActorTwo";
 	ActorRef<String> refTwo = getContext().spawn(ActorTwo.create(), "ActorTwo");

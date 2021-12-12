@@ -9,20 +9,14 @@ import akka.actor.typed.javadsl.Receive;
 
 public class ActorFour extends AbstractBehavior<String> {
 
-    private int counter = 0;
-    private int checkerForFunction = 0;
     private String messageSecondBD = "BD2";
     private String messageActorThree = "ActorThreeEnd";
     ActorRef refThree = getContext().spawn(ActorThree.create(), "ActorThree2");
     ActorRef refSecondBD = getContext().spawn(SecondBD.create(), "SecondBD");
 
-
-
     public static Behavior<String> create() {
         return Behaviors.setup(context -> new ActorFour(context));
     }
-
-    private int greetingCounter;
 
     private ActorFour(ActorContext<String> context) {
         super(context);
@@ -42,5 +36,4 @@ public class ActorFour extends AbstractBehavior<String> {
         refThree.tell(messageActorThree);
         return this;
     }
-
 }
