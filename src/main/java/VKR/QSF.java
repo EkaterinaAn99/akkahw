@@ -61,7 +61,7 @@ public class QSF extends AbstractBehavior<QSF.SetIP> {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder
-                .parse(new File("C:\\Users\\Katerina\\IdeaProjects\\akkahw\\src\\main\\java\\actorForDiploma\\param.xml"));
+                .parse(new File("C:\\Users\\Katerina\\IdeaProjects\\akkahw\\src\\main\\java\\VKR\\param.xml"));
         document.getDocumentElement().normalize();
         Element root = document.getDocumentElement();
         NodeList nList = document.getElementsByTagName("PC");

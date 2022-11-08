@@ -54,8 +54,9 @@ public class CheckNetwork extends AbstractBehavior<CheckNetwork.Greet> {
         boolean test = true;
         getContext().getLog().info("Выполнить проверку сети для {}", command.whom);
         ActorRef<CheckNetwork.Greeted> replyTo = getContext().spawn(CheckAppParam.create(), ("CheckAppParam" + command.whom));
-        if (test == true) {
+        if (PingIP.runSystemCommand("192.168.0.1") == true) {
             getContext().getLog().info("-->{} {}", CommanCommands.CHECKNET.getTitle(), command.whom);
+            getContext().getLog().info("-->Вычислительная машина {} доступна: {}", command.whom, PingIP.runSystemCommand("192.168.0.1"));//заплатка IP
             replyTo.tell(new Greeted(command.whom, command.program, command.typeOS));
             return this;
         }
