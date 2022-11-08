@@ -1,4 +1,4 @@
-package actorForDiploma;
+package VKR;
 
 import akka.actor.typed.ActorRef;
 import akka.actor.typed.Behavior;
@@ -7,37 +7,39 @@ import akka.actor.typed.javadsl.ActorContext;
 import akka.actor.typed.javadsl.Behaviors;
 import akka.actor.typed.javadsl.Receive;
 
-public class Q0N extends AbstractBehavior<Q0N.Greet> {
+public class CheckNetwork extends AbstractBehavior<CheckNetwork.Greet> {
 
     public static final class Greet {
         public final String whom;
         public final String program;
-        public final ActorRef<Greeted> replyTo;
+        //public final ActorRef<Greeted> replyTo;
+        public  final String typeOS;
 
-        public Greet(String whom, String program, ActorRef<Greeted> replyTo) {
+        public Greet(String whom, String program, String typeOS) {
             this.whom = whom;
             this.program = program;
-            this.replyTo = replyTo;
+            //this.replyTo = replyTo;
+            this.typeOS = typeOS;
         }
     }
 
     public static final class Greeted {
         public final String whom;
         public final String program;
-        public final ActorRef<Greet> from;
+        public  final String typeOS;
 
-        public Greeted(String whom, String program, ActorRef<Greet> from) {
+        public Greeted(String whom, String program, String typeOS) {
             this.whom = whom;
             this.program = program;
-            this.from = from;
+            this.typeOS = typeOS;
         }
     }
 
     public static Behavior<Greet> create() {
-        return Behaviors.setup(Q0N::new);
+        return Behaviors.setup(CheckNetwork::new);
     }
 
-    private Q0N(ActorContext<Greet> context) {
+    private CheckNetwork(ActorContext<Greet> context) {
         super(context);
     }
 
@@ -49,12 +51,12 @@ public class Q0N extends AbstractBehavior<Q0N.Greet> {
     }
 
     private Behavior<Greet> onGreet(Greet command) throws InterruptedException {
-
         boolean test = true;
+        getContext().getLog().info("Выполнить проверку сети для {}", command.whom);
+        ActorRef<CheckNetwork.Greeted> replyTo = getContext().spawn(CheckAppParam.create(), ("CheckAppParam" + command.whom));
         if (test == true) {
-            getContext().getLog().info("Установлено соединение с {} для {}", command.whom, command.program);
-            getContext().getLog().info("Определен тип ОС {} для настройки {}",  command.whom, command.program);
-            command.replyTo.tell(new Greeted(command.whom, command.program, getContext().getSelf()));
+            getContext().getLog().info("-->{} {}", CommanCommands.CHECKNET.getTitle(), command.whom);
+            replyTo.tell(new Greeted(command.whom, command.program, command.typeOS));
             return this;
         }
         else {

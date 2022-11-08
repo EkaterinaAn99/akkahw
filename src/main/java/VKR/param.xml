@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<param>
+    <paramfor>ConfigFile</paramfor>
+    <PCs>
+        <PC number="1">
+            <IP>192.168.0.1</IP>
+            <program>Java</program>
+            <OS>Linux</OS>
+        </PC>
+        <PC number="2">
+            <IP>192.168.0.2</IP>
+            <program>Python</program>
+            <OS>Windows</OS>
+        </PC>
+        <PC number="3">
+            <IP>192.168.0.3</IP>
+            <program>MPI</program>
+            <OS>Windows</OS>
+        </PC>
+        <PC number="4">
+            <IP>192.168.0.4</IP>
+            <program>MPI</program>
+            <OS>Linux</OS>
+        </PC>
+        <PC number="5">
+            <IP>192.168.0.5</IP>
+            <program>Python</program>
+            <OS>Linux</OS>
+        </PC>
+    </PCs>
+</param>
